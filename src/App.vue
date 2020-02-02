@@ -1,28 +1,37 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-content>
+      <PhotoAlbum
+        v-if="albumLoaded"
+      />
+    </v-content>
+
+    <v-overlay
+      :value="getShowOverlay"
+    >
+      <v-progress-circular
+        :size="100"
+        :width="10"
+        color="white"
+        indeterminate
+      ></v-progress-circular>
+    </v-overlay>
+
+    <v-snackbar
+      :value="showSnackBar"
+      bottom
+      left
+    >
+      {{ errorMessage }}
+      <v-btn
+        dark
+        text
+        @click="closeSnackBar"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
+  </v-app>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue';
-
-export default {
-  name: 'app',
-  components: {
-    HelloWorld,
-  },
-};
-</script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<script src="./App.js"></script>

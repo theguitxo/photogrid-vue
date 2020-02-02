@@ -1,0 +1,70 @@
+@mixin border-rounded ($borderWidth, $borderColor, $radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border: $borderWidth solid $borderColor;
+}
+
+.photo-frame {
+  background: rgb(96, 96, 96);
+  background: -moz-linear-gradient(0deg, rgba(96, 96, 96, 1) 0%, rgba(192, 192, 192, 1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(96, 96, 96, 1) 0%, rgba(192, 192, 192, 1) 100%);
+  background: linear-gradient(0deg, rgba(96, 96, 96, 1) 0%, rgba(192, 192, 192, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#606060", endColorstr="#c0c0c0", GradientType=1);
+
+  @include border-rounded(0px, transparent, 10px);
+
+  padding: 0;
+
+  &--loading {
+    position: absolute;
+    top: 0;
+    height: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-image: url("~@/assets/loading.png");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+
+  @include border-rounded(0px, transparent, 10px);
+
+  &[lazy=loading],
+  &[lazy=loaded] {
+    height: 100%;
+    width: 100%;
+  }
+
+  &[lazy=loading] {
+    background-image: url("~@/assets/loading.png");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &[lazy=loaded] {
+    -webkit-animation-name: show-image;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-name: show-image;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+
+    cursor: pointer;
+  }
+}
+
+@keyframes show-image {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
