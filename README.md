@@ -50,4 +50,4 @@ yarn test:e2e
 
 You can see a demo of the app here:
 
-[Demo](http://photogrid.guitxo.com/)
+[https://theguitxo.github.io/photogrid-vue/](https://theguitxo.github.io/photogrid-vue/)
